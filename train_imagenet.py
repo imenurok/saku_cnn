@@ -67,6 +67,7 @@ def load_image_list(path):
 train_list = load_image_list(args.train)
 val_list = load_image_list(args.val)
 mean_image = pickle.load(open(args.mean, 'rb'))
+val_list_size=len(val_list)
 
 # Prepare model
 if args.arch == 'i2vvgg':
@@ -229,9 +230,9 @@ def log_result():
 
             val_loss += loss
             val_accuracy += accuracy
-            if val_count == 20:
-                mean_loss = val_loss * args.val_batchsize / 20
-                mean_error = 1 - val_accuracy * args.val_batchsize / 20
+            if val_count == val_list_size:
+                mean_loss = val_loss * args.val_batchsize / val_list_size
+                mean_error = 1 - val_accuracy * args.val_batchsize / val_list_size
                 print(file=sys.stderr)
                 print(json.dumps({'type': 'val', 'iteration': train_count,
                                   'error': mean_error, 'loss': mean_loss}))
