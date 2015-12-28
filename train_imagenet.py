@@ -270,9 +270,9 @@ def train_loop():
 
             if not graph_generated:
                 with open('graph.dot', 'w') as o:
-                    o.write(c.build_computational_graph((loss,), False).dump())
+                    o.write(c.build_computational_graph((loss,)).dump())
                 with open('graph.wo_split.dot', 'w') as o:
-                    o.write(c.build_computational_graph((loss,), True).dump())
+                    o.write(c.build_computational_graph((loss,)).dump())
                 print('generated graph')
                 graph_generated = True
 
