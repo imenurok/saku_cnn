@@ -47,7 +47,7 @@ class i2vVGG(chainer.FunctionSet):
         h = F.relu(self.conv6_1(h))
         h = F.relu(self.conv6_2(h))
         h = F.relu(self.conv6_3(h))
-        h = F.reshape(F.average_pooling_2d(h, 4),(x_data.shape[0],1000))
+        h = F.reshape(F.average_pooling_2d(h, 7),(x_data.shape[0],1000))
         return F.softmax_cross_entropy(h, t), F.accuracy(h, t)
 
     def predict(self, x_data, train=True):
@@ -69,6 +69,6 @@ class i2vVGG(chainer.FunctionSet):
         h = F.relu(self.conv6_1(h))
         h = F.relu(self.conv6_2(h))
         h = F.relu(self.conv6_3(h))
-        h = F.reshape(F.average_pooling_2d(h, 4),(x_data.shape[0],1000))
+        h = F.reshape(F.average_pooling_2d(h, 7),(x_data.shape[0],1000))
         h = F.softmax(h)
         return h
