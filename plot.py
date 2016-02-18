@@ -16,15 +16,15 @@ xs_test = [0]
 ys_test = [1]
 
 for line in open(args.result):
-    print line
-    data = json.loads(line)
-    if int(data["iteration"])<=130000:
-        if data["type"]=="train":
-            xs_train.append(data["iteration"])
-            ys_train.append(data["error"])
-        elif data["type"]=="val":
-            xs_test.append(data["iteration"])
-            ys_test.append(data["error"])
+    data_line="{"+line.split("{")[1]
+    print data_line
+    data = json.loads(data_line)
+    if data["type"]=="train":
+        xs_train.append(data["iteration"])
+        ys_train.append(data["error"])
+    elif data["type"]=="val":
+        xs_test.append(data["iteration"])
+        ys_test.append(data["error"])
 pylab.xlabel("iteration")
 pylab.ylabel("error")
 pylab.plot(xs_train, ys_train,label="train")

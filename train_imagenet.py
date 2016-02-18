@@ -81,9 +81,9 @@ if args.gpu >= 0:
     model.to_gpu()
 
 # Setup optimizer
-optimizer = optimizers.Adam(alpha=0.0001)
+optimizer = optimizers.Adam(alpha=0.001)
 optimizer.setup(model)
-print('Adam alpha=0.0001',file=sys.stderr)
+print('Adam alpha=0.001',file=sys.stderr)
 
 
 # ------------------------------------------------------------------------------
@@ -149,7 +149,7 @@ def feed_data():
 
             count += 1
 #original   if count % 100000 == 0:
-            if count % (20*args.batchsize) == 0:
+            if count % (10*len(train_list)) == 0:
                 data_q.put('val')
                 j = 0
                 for path, label in val_list:

@@ -97,11 +97,12 @@ for source_dirpath in os.listdir(args.source_dir):
         ys_pass=0
 
         for rank, (score, name) in enumerate(prediction[:top_k], start=1):
-            print (args.source_dir+"/"+source_dirpath+"/"+source_imgpath+" "+name+" "+source_dirpath)
             if name == source_dirpath:
+                print (args.source_dir+"/"+source_dirpath+"/"+source_imgpath+" "+name+" True")
                 ok+=1
             else:
+                print (args.source_dir+"/"+source_dirpath+"/"+source_imgpath+" "+name+" False")
                 ng+=1
 
-print ("collect {}/{}".format(str(ok),str(ok+ng)),file=sys.stderr)
-print ("not collect {}/{}".format(str(ng),str(ok+ng)),file=sys.stderr)
+print ("correct {}/{}".format(str(ok),str(ok+ng)),file=sys.stderr)
+print ("not correct {}/{}".format(str(ng),str(ok+ng)),file=sys.stderr)
