@@ -21,7 +21,7 @@ else:
     "mkdir images",
     "python crop.py images_raw images",
     "python compute_mean.py train.txt",
-    "python train_imagenet.py -g "+args.gpu_no+" -B 16 -b 1 -E "+args.epoch+" train.txt test.txt 2>&1 | tee log"
+    "python train_imagenet.py -g "+args.gpu_no+" -B 16 -b 1 -E "+str(args.epoch)+" train.txt test.txt 2>&1 | tee log"
     ]
     
     interrupt_check=False
